@@ -144,7 +144,14 @@
 
                 <div style='clear:both;'></div>
             </div>
-            <img src="img/post4.png">
+           <img src="img/post4.png" id="real" alt="<b>新年試手氣！週週抽現金紅包、拿大獎
+　一元復始，萬象更新。</b><br><br>2019年在十二生肖中屬於豬年，是中國人眼中的吉祥年。<br>隨著農曆年節的腳步逼近，你準備好試試手氣、贏得現金紅包了嗎？<br>趕快來參加bo shing舉辦的迎新活動，只要在今年1/31前，<br>單筆購買bo shing滿6000元，就有一次抽紅包、賺現金機會。<br>而且紅包週週抽、週週送，讓你豬年一開始就有機會好運連連！
+">
+            <div class="motai" id="mo">
+                <span class="close_1" id="close">×</span>
+                <img class="motaiimg" id="moimg">
+                <div id="caption"></div>
+            </div>
             <div class="topic"><b>-產品一覽-</b></div>
             <div style="text-align: center ;">
                 <!--hover做動畫-->
@@ -238,42 +245,7 @@
 <div>
     <a onclick="window.scrollTo(0,0);return false;"><img src="icon/up.png" class="top_up"></a>
 </div>
-<script>
-    var slideIndex = 1;
-    showSlides(slideIndex);
 
-    // Next/previous controls
-    function plusSlides(n) {
-        showSlides(slideIndex += n);
-    }
-
-    // Thumbnail image controls
-    function currentSlide(n) {
-        showSlides(slideIndex = n);
-    }
-
-    function showSlides(n) {
-        var i;
-        var slides = document.getElementsByClassName("mySlides");
-        var dots = document.getElementsByClassName("dot");
-        if (n > slides.length) {
-            slideIndex = 1
-        }
-        if (n < 1) {
-            slideIndex = slides.length
-        }
-        for (i = 0; i < slides.length; i++) {
-            slides[i].style.display = "none";
-        }
-        for (i = 0; i < dots.length; i++) {
-            dots[i].className = dots[i].className.replace(" active", "");
-        }
-        slides[slideIndex - 1].style.display = "block";
-        dots[slideIndex - 1].className += " active";
-        setTimeout(showSlides, 4000); // 切换时间为 4 秒
-    }
-
-</script>
 
 
 <script>
@@ -293,5 +265,76 @@
         }
     }
 
+	  /*按鈕*/
+    var slideIndex = 1;
+    showSlides(slideIndex);
+
+    function plusSlides(n) {
+        showSlides(slideIndex += n);
+    }
+
+    function currentSlide(n) {
+        showSlides(slideIndex = n);
+    }
+
+    function showSlides(n) {
+        var i;
+        var slides = document.getElementsByClassName("mySlides");
+        var dots = document.getElementsByClassName("dot");
+        if (n > slides.length) {
+            slideIndex = i
+        }
+        if (n < 1) {
+            slideIndex = slides.length
+        }
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+        for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" active", "");
+        }
+        slides[slideIndex - 1].style.display = "block";
+        dots[slideIndex - 1].className += " active";
+    }
+    
+
+    var slideIndex = 0;
+    showSlides();
+
+    function showSlides() {
+        var i;
+        var slides = document.getElementsByClassName("mySlides");
+        var dots = document.getElementsByClassName("dot");
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+        slideIndex++;
+        if (slideIndex > slides.length) {
+            slideIndex = 1
+        }
+        for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" active", "");
+        }
+        slides[slideIndex - 1].style.display = "block";
+        dots[slideIndex - 1].className += " active";
+        setTimeout(showSlides, 4000); // 切换时间为 2 秒
+    }
+
+
+
+    /*廣告圖*/
+    var motai = document.getElementById('mo')
+    var moimg = document.getElementById("moimg")
+    var realimg = document.getElementById("real")
+    var caption = document.getElementById("caption")
+    realimg.onclick = function() {
+        motai.style.display = "block"
+        moimg.src = this.src
+        caption.innerHTML = this.alt
+    }
+    var span = document.getElementById("close");
+    span.onclick = function() {
+        motai.style.display = "none";
+    }
 </script>
 
