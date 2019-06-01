@@ -1,0 +1,270 @@
+<!--↓↓↓↓↓此為jsp格式請勿更改↓↓↓↓↓-->
+<!--<%@page pageEncoding="utf-8"%>-->
+<!--↑↑↑↑↑此為jsp格式請勿更改↑↑↑↑↑-->
+<!--原先連結為index.html的檔案請改連結到index.jsp-->
+<!DOCTYPE html>
+<!--基本元素複製標頭-->
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>期末專案</title>
+
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" type="text/css" href="sales.css">
+    <link rel="stylesheet" type="text/css" href="product.css">
+<link rel="stylesheet" type="text/css" href="nav.css">
+    <link rel="stylesheet" type="text/css" href="button.css">
+    <link rel=stylesheet type="text/css" href="drop_down_menu.css">
+     <link rel="stylesheet" href="hint.css">
+</head>
+<header>
+    <div id="logo">
+        <a href="index.jsp"><img src="img/logo.png" class="logo"></a>
+    </div>
+
+    <div id="nav">
+        <ul class="drop-down-menu">
+            <li>
+                <a href="index.jsp#about" style="text-decoration:none;">關於我們</a>
+                <ul>
+                    <li><a href="index.jsp#fund" style="text-decoration:none;">成立宗旨</a></li>
+                    <li><a href="index.jsp#idea" style="text-decoration:none;">產品理念</a></li>
+                    <li><a href="index.jsp#member" style="text-decoration:none;">成員介紹</a></li>
+                    <li><a href="contact.jsp" style="text-decoration:none;">聯絡我們</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="product.jsp" style="text-decoration:none;">包袋總覽</a>
+                <ul>
+                    <li><a href="product.jsp" style="text-decoration:none;">托特包</a></li>
+                    <li><a href="product.jsp" style="text-decoration:none;">萬用提袋</a></li>
+                    <li><a href="product.jsp" style="text-decoration:none;">多功能袋</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="product.jsp" style="text-decoration:none;">文具用品</a>
+                <ul>
+                    <li><a href="product.jsp" style="text-decoration:none;">名片夾</a></li>
+                    <li><a href="product.jsp" style="text-decoration:none;">文件袋</a></li>
+                    <li><a href="product.jsp" style="text-decoration:none;">書衣</a></li>
+                    <li><a href="product.jsp" style="text-decoration:none;">筆袋</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="product.jsp" style="text-decoration:none;">衣著總覽</a>
+                <ul>
+                    <li><a href="product.jsp" style="text-decoration:none;">短T</a></li>
+                    <li><a href="product.jsp" style="text-decoration:none;">鋪棉帽T</a></li>
+                    <li><a href="product.jsp" style="text-decoration:none;">棉麻洋裝</a></li>
+                </ul>
+            </li>
+
+
+        </ul>
+    </div>
+    <div id="funtion_login">
+        <!--標頭燈入註冊-->
+        <ul class="drop-down-menu_2">
+            <li><a href="login.jsp" style="text-decoration:none;">登入 / 註冊</a></li>
+        </ul>
+    </div>
+    
+    <div id="funtion">
+            <span class="hint--bottom" data-hint="請先登入">
+            <a href="login.jsp"><img src="icon/user.png" class="righticon_img"></a>
+            </span>
+            <!--判斷是否有登入在跳轉member.jsp-->
+            <span class="hint--bottom" data-hint="請先登入">
+            <a href="login.jsp"><img src="icon/shopcar.png" class="righticon_img"></a>
+            </span>
+            <span class="hint--bottom" data-hint="追蹤清單">
+            <a href="love.jsp"><img src="icon/heart.png" class="righticon_img"></a>
+            </span>
+            <span class="hint--bottom" data-hint="搜尋商品">
+            <a href="search.jsp"><img src="icon/search.png" class="righticon_img"></a>
+            </span>
+        </div>
+
+    <div style='clear;'></div>
+</header>
+<body>
+    <!--移到最上面(原先的檔案已移動到header.html)(檔案內仍須加上css的link)-->
+    <!--基本元素複製(原先的檔案已移動到header.html)(檔案內仍須加上css的link)-->
+    <!--幻燈片-->
+    <div style="margin-top:125px; position:relative;">
+        <div class="slideshow-container">
+            <div class="mySlides fade">
+                <img src="img/poster1.png" style="width:100%"></div>
+            <div class="mySlides fade">
+                <img src="img/poster2.png" style="width:100%"></div>
+            <div class="mySlides fade">
+                <img src="img/poster3.png" style="width:100%"></div>
+
+            <a class="prev" onclick="plusSlides(-1)">❮</a>
+            <a class="next" onclick="plusSlides(1)">❯</a>
+        </div><br>
+        <div style="text-align:center">
+            <span class="dot" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+            <span class="dot" onclick="currentSlide(3)"></span>
+        </div>
+    </div>
+    <!--幻燈片-->
+    <br>
+    <div id="middle" style="padding: 0.5%;"><br>
+        <div class="topic"><b>-人氣注目-</b></div>
+        <div style="text-align: center; ">
+
+            <div class=index_protuct>
+
+                <div class="inner_product">
+                    <a href="sales.jsp">
+                        <img class="product_1" src="img/pen-1.png" /></a>
+                    <p class="product_title">迪士尼系列毛圈圓領衫</p>
+                </div>
+                <div class="inner_product">
+                    <a href="sales.jsp">
+                        <img class="product_1" src="img/shirt-1.png" /></a>
+                    <p class="product_title">迪士尼系列毛圈圓領衫</p>
+                </div>
+                <div class="inner_product">
+                    <a href="sales.jsp">
+                        <img class="product_1" src="img/book-1.png" /></a>
+                    <p class="product_title">迪士尼系列毛圈圓領衫</p>
+                </div>
+                <div class="inner_product">
+                    <a href="sales.jsp">
+                        <img class="product_1" src="img/shirt-1.png" /></a>
+                    <p class="product_title">迪士尼系列毛圈圓領衫</p>
+                </div>
+
+                <div style='clear:both;'></div>
+            </div>
+            <img src="img/post4.png">
+            <div class="topic"><b>-產品一覽-</b></div>
+            <div style="text-align: center ;">
+                <!--hover做動畫-->
+                <div class=index_protuct>
+
+                    <div class="inner_product">
+                        <a href="product.jsp">
+                            <img class="product_1" src="img/pen-1.png" />
+                        </a>
+                    </div>
+                    <div class="inner_product">
+                        <a href="product.jsp">
+                            <img class="product_1" src="img/shirt-1.png" />
+                        </a>
+                    </div>
+                    <div class="inner_product">
+                        <a href="product.jsp">
+                            <img class="product_1" src="img/book-1.png" />
+                        </a>
+                    </div>
+                    <div class="inner_product">
+                        <a href="product.jsp">
+                            <img class="product_1" src="img/shirt-1.png" />
+                        </a>
+                    </div>
+
+                    <div style='clear:both;'></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--基本元素複製區塊頁尾(原先的檔案已移動到footer.html)(檔案內仍須加上css的link)-->
+
+</body>
+<footer>
+    <link rel=stylesheet type="text/css" href="index.css">
+
+    <div style="margin-left: 90px;margin-right: 90px;">
+        <br>
+        <div style="columns:5; ">
+            <p><br>聯絡我們<br>
+                服務時間：週一至週五 11:00-18:00<br>
+                訊息聯繫：facebook私訊<br>
+                客服信箱：igift.service@gmail.com<br>
+                客服專線：02-29747401
+                About<br>
+                關於我們<br>
+                關於產品<br>
+                聯絡我們</p>
+            <p>
+                About<br>
+                關於我們<br>
+                關於產品<br>
+                聯絡我們</p>
+            <p>
+                布行文創｜NOTHANKS for 設計師<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;╳<br>
+                專屬設計師的產品發表平台，
+                多<br>種單件製造產品線。
+                恣意創作，<br>自由揮灑。</p>
+            <img class="footer_img" src="img/Midas.png">
+        </div>
+    </div>
+    <hr>
+    <p style="text-align: center"> 2018 YENYUCHENG. ALL RIGHTS RESERVED.</p>
+</footer>
+<div>
+    <a onclick="window.scrollTo(0,0);return false;"><img src="icon/up.png" class="top_up"></a>
+</div>
+<script>
+    var slideIndex = 1;
+    showSlides(slideIndex);
+
+    // Next/previous controls
+    function plusSlides(n) {
+        showSlides(slideIndex += n);
+    }
+
+    // Thumbnail image controls
+    function currentSlide(n) {
+        showSlides(slideIndex = n);
+    }
+
+    function showSlides(n) {
+        var i;
+        var slides = document.getElementsByClassName("mySlides");
+        var dots = document.getElementsByClassName("dot");
+        if (n > slides.length) {
+            slideIndex = 1
+        }
+        if (n < 1) {
+            slideIndex = slides.length
+        }
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+        for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" active", "");
+        }
+        slides[slideIndex - 1].style.display = "block";
+        dots[slideIndex - 1].className += " active";
+        setTimeout(showSlides, 4000); // 切换时间为 4 秒
+    }
+
+</script>
+
+
+<script>
+    function myFunction() {
+        var dots = document.getElementById("dots");
+        var moreText = document.getElementById("more");
+        var btnText = document.getElementById("myBtn");
+
+        if (dots.style.display === "none") {
+            dots.style.display = "inline";
+            btnText.innerHTML = "more";
+            moreText.style.display = "none";
+        } else {
+            dots.style.display = "none";
+            btnText.innerHTML = "less";
+            moreText.style.display = "inline";
+        }
+    }
+
+</script>
+
