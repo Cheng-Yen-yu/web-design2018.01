@@ -1,0 +1,136 @@
+<!--↓↓↓↓↓此為jsp格式請勿更改↓↓↓↓↓-->
+<!--<%@page pageEncoding="utf-8"%>-->
+<!--↑↑↑↑↑此為jsp格式請勿更改↑↑↑↑↑-->
+<!--原先連結為index.html的檔案請改連結到index.jsp-->
+<!DOCTYPE html>
+<!--基本元素複製標頭-->
+<html>
+
+<head>
+    <meta charset="utf-8">
+
+    <title>期末專案</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" type="text/css" href="login.css">
+</head>
+
+
+<body>
+
+    <div class="login_con">
+        <div class="a">
+
+            <div class="cont_centrar">
+
+                <div class="cont_login">
+                    <div class="cont_info_log_sign_up">
+                        <div class="col_md_login">
+                            <div class="cont_ba_opcitiy">
+
+                                <h2>會員登入</h2>
+                                <p>登入"布行"會員即可快速結帳</p>
+                                <button class="btn_login" onclick="cambiar_login()">LOGIN</button>
+                            </div>
+                        </div>
+                        <div class="col_md_sign_up">
+                            <div class="cont_ba_opcitiy">
+                                <h2>立即註冊</h2>
+                                <p>還沒有會員嗎，選我立即註冊</p>
+
+                                <button class="btn_sign_up" onclick="cambiar_sign_up()">SIGN UP</button>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="cont_back_info">
+                        <div class="cont_img_back_grey">
+                            <img src="img/pigposter.png" />
+                            <!--背景照片更換-->
+                        </div>
+
+                    </div>
+                    <div class="cont_forms">
+                        <div class="cont_img_back_">
+                            <img src="img/pigposter.png" alt="" />
+                        </div>
+                        <div class="cont_form_login">
+
+                            <a href="#" onclick="ocultar_login_sign_up()"><img class="icon_login" src="icon/right.png">
+                                <!--icon 放置-->
+                            </a>
+                            <h2>會員登入</h2>
+                            <input type="text" placeholder="請輸入帳號  " />
+                            <input type="password" placeholder="請輸入密碼" />
+                            <p>&nbsp;</p>
+                            <button class="btn_login" onclick="cambiar_login()">LOGIN</button>
+                        </div>
+
+                        <div class="cont_form_sign_up">
+                            <a href="#" onclick="ocultar_login_sign_up()"><img class="icon_login" src="icon/left.png"></a>
+                            <h2>立即註冊</h2>
+                            <input type="text" placeholder="姓名" />
+                            <input type="text" placeholder="電子信箱" />
+                            <input type="text" placeholder="帳號" />
+                            <input type="password" placeholder="密碼" />
+                           <div>&nbsp;</div>
+                            <button class="btn_sign_up" onclick="cambiar_sign_up()">SIGN UP</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style='clear:both;'></div>
+        </div>
+    </div>
+
+</body>
+
+</html>
+<script>
+
+function cambiar_login() {
+  document.querySelector('.cont_forms').className = "cont_forms cont_forms_active_login";  
+document.querySelector('.cont_form_login').style.display = "block";
+document.querySelector('.cont_form_sign_up').style.opacity = "0";               
+
+setTimeout(function(){  document.querySelector('.cont_form_login').style.opacity = "1"; },400);  
+  
+setTimeout(function(){    
+document.querySelector('.cont_form_sign_up').style.display = "none";
+},200);  
+  }
+
+function cambiar_sign_up(at) {
+  document.querySelector('.cont_forms').className = "cont_forms cont_forms_active_sign_up";
+  document.querySelector('.cont_form_sign_up').style.display = "block";
+document.querySelector('.cont_form_login').style.opacity = "0";
+  
+setTimeout(function(){  document.querySelector('.cont_form_sign_up').style.opacity = "1";
+},100);  
+
+setTimeout(function(){   document.querySelector('.cont_form_login').style.display = "none";
+},400);  
+
+
+}    
+
+
+
+function ocultar_login_sign_up() {
+
+document.querySelector('.cont_forms').className = "cont_forms";  
+document.querySelector('.cont_form_sign_up').style.opacity = "0";               
+document.querySelector('.cont_form_login').style.opacity = "0"; 
+
+setTimeout(function(){
+document.querySelector('.cont_form_sign_up').style.display = "none";
+document.querySelector('.cont_form_login').style.display = "none";
+},500);  
+  
+  }
+
+
+
+
+</script>

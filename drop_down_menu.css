@@ -1,0 +1,149 @@
+#nav {
+    position: fixed;
+    top: 65px;
+    width: 100%;
+    margin-left: 30%;
+    word-spacing: 50px;
+    z-index: -1;
+}
+
+/*下拉選單*/
+ul {
+    margin: 2px;
+   
+    list-style: none;
+}
+
+ul.drop-down-menu {
+
+    display: inline-block;
+    font-size: 13px;
+}
+
+ul.drop-down-menu li {
+    position: relative;
+    white-space: nowrap;
+
+}
+
+ul.drop-down-menu > li:last-child {
+    border-right: none;
+}
+
+ul.drop-down-menu > li {
+    float: left;
+    /* 只有第一層是靠左對齊*/
+}
+
+ul.drop-down-menu a {
+    background-color: #fcfcfc;
+    color: #3c3c3c;
+    font-weight: 500;
+    display: block;
+    padding: 0 30px;
+    text-decoration: none;
+    line-height: 40px;
+    /*每個按鈕的高度*/
+}
+
+ul.drop-down-menu a:hover {
+    /* 滑鼠滑入按鈕變色*/
+    border-bottom: #cf9e9e 5px solid;
+    color: black;
+}
+
+ul.drop-down-menu li:hover > a {
+    /* 滑鼠移入次選單上層按鈕保持變色*/
+    border-bottom: #cf9e9e 5px solid;
+    color: #272727;
+    font-weight: bold;
+}
+
+ul.drop-down-menu ul {
+
+    position: absolute;
+    z-index: 99;
+    left: -1px;
+    top: 100%;
+    min-width: 180px;
+}
+
+ul.drop-down-menu ul li:last-child {
+    border-bottom: none;
+}
+
+ul.drop-down-menu ul ul {
+    /*第三層以後的選單出現位置與第二層不同*/
+    z-index: 999;
+    top: 10px;
+    left: 90%;
+}
+
+ul.drop-down-menu ul {
+    /*隱藏次選單*/
+    margin-top: 0px;
+    margin-left: 1px;
+    left: 99999px;
+    opacity: 0;
+    transition: opacity 0.3s;
+    transition: opacity 0.3s;
+}
+
+ul.drop-down-menu li:hover > ul {
+    /* 滑鼠滑入展開次選單*/
+    opacity: 1;
+    transition: opacity 0.3s;
+    transition: opacity 0.3s;
+    left: -1px;
+    border-right: 5px;
+}
+
+ul.drop-down-menu li:hover > ul ul {
+    /* 滑鼠滑入之後、次選單之後的選單依舊隱藏*/
+    left: 99999px;
+}
+
+ul.drop-down-menu ul li:hover > ul {
+    /* 第二層之後的選單展開位置*/
+    left: 90%;
+}
+
+li {
+    font-size: 16px;
+}
+
+/*下拉選單結束*/
+
+
+/*登入選單*/
+ul {
+    margin: 2px;
+    padding: 0;
+    list-style: none;
+}
+
+ul.drop-down-menu_2 > li {
+    float: left;
+    /* 只有第一層是靠左對齊*/
+}
+
+ul.drop-down-menu_2 a {
+
+    color: black;
+    font-weight: 400;
+    display: block;
+    padding: 0 30px;
+    text-decoration: none;
+    line-height: 40px;
+    /*每個按鈕的高度*/
+}
+
+ul.drop-down-menu_2 li:hover > a {
+    /* 滑鼠移入次選單上層按鈕保持變色*/
+
+    border-bottom: #cf9e9e 5px solid;
+    color: #ad5a5a;
+    font-weight: bolder;
+}
+
+/*登入選單結束*/

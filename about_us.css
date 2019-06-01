@@ -1,0 +1,55 @@
+#feedback {
+    background: white;
+    padding: 2%;
+}
+
+.feedback_right {
+
+    min-height: 500px;
+    float: left;
+    background-color: #FFDDAA;
+    width: 85%;
+    margin-left: -7%;
+margin-bottom: 5%;
+}
+
+.feedback_left {
+    height: auto;
+    float: left;
+    background-color:white;
+    width: 20%;
+
+}
+
+.inner_feedback {
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+
+/*左邊標籤*/
+.about_lable_main {
+    font-weight: bold;
+    font-size: 18px;
+    color: darkred;
+    margin-bottom: 5%;
+    border-radius: 8px;
+    background-color: #FFDDAA;
+    padding: 8%;
+    width: 50%;
+    text-align: left;
+    margin-left: 15%;
+    box-shadow: 0px 3px 12px #6c6c6ccc;
+}
+
+.about_lable {
+    margin-bottom: 5%;
+    border-radius: 8px;
+    background-color: #FFFFBB;
+    padding: 8%;
+    width: 40%;
+    text-align: left;
+    margin-left: 20%;
+    box-shadow: 0px 3px 12px #6c6c6ccc;
+    color: black;
+}

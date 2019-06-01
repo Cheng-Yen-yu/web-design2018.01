@@ -1,0 +1,131 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
+<html>
+<%	
+    acc=null;
+    pas=null;
+    String number=null;
+    number=request.getParameter("id");
+
+    try{
+        Cookie getC[]=request.getCookies();
+        for(int i=0;i<getC.length;i++)
+        {
+            if(getC[i].getName().equals("getin"))
+            {
+                String[] sp=getC[i].getValue().split("-");
+                acc=sp[0];
+                pas=sp[1];
+            }
+        }
+
+        if(acc==null||acc.equals("")||pas==null||pas.equals(""))
+        {
+            out.write("<script language=javascript>alert('請先登入');</script>");          
+            response.setHeader("refresh","0;URL=login.jsp") ;
+        }
+        else
+        {
+            sql="SELECT * FROM member WHERE m_account='"+acc+"' and m_password='"+pas+"'";
+            ResultSet dt=con.createStatement().executeQuery(sql);
+            dt.next();
+            if(dt.getString("m_level").equals("1"))
+            {
+                out.write("<script language=javascript>alert('歡迎管理員大大');</script>");
+            response.setHeader("refresh","0;URL=back_member.jsp") ;
+            }   
+        }
+	sql="select * from list_shopping,goods where l_idd='"+number+"' and goods.p_id=list_shopping.p_id;";
+    ResultSet rs=con.createStatement().executeQuery(sql);
+%>
+<head>
+    <meta charset="utf-8">
+
+    <title>期末專案</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" type="text/css" href="order.css">
+    <link rel="stylesheet" type="text/css" href="product.css">
+</head>
+
+<body>
+
+    <div id="middle_shop_order">
+        <br>
+        <!--填寫資料部分-->
+        <div class="topic"><b>- 訂單完成 -</b></div>
+        <img src="img/shoping3.png">
+        <div style="margin:8%; margin-top: 0%;">
+
+            <div>親愛的會員您好：<br>
+
+                這個訊息是發自 布行BoShing，告知您 布行BoShing 已接獲您此次的訂購需求，並將以最快速度處理！<br>
+
+                感謝您對 布行BoShing 的支持並承蒙訂購，以下資料是您此次的訂購明細，若有問題則請依訂單編號向我們查詢，謝謝您！<br>
+
+                布行BoShing 仍保有決定是否接受訂單及出貨與否之權利，出貨以及取貨通知函，將以E-mail方式通知您！</div>
+            <br>
+            
+            <%
+                if(rs.next()){
+                out.print("<div calss='finish_padding'>");
+                out.print("<div class='finish_title'>"+"<fieldset>"+"<b>"+"訂單明細"+"</b>"+"</fieldset>"+"</div>");
+                out.print("<div style='margin: 2% 10%;'>");
+                out.print("訂單編號："+rs.getString("l_idd")+"<br>");
+                out.print("預期到貨時間："+rs.getString("delivery_time")+"<br>");
+                out.print("配送方式：宅配"+"<br>");
+                out.print("付款方式：貨到付款"+"<br>");
+                out.print("收件人："+rs.getString("l_name")+"<br>");
+                out.print("應付金額：NT."+rs.getString("totalprice")+"<br><br><br>");
+            }
+            
+                out.print("訂購商品與名稱與數量：");
+                out.print("<hr>");
+                while(rs.next()){
+                out.print(rs.getString("p_name"));
+                out.print("<div class='finish_num'>");
+                out.print("數量："+rs.getString("l_number")+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+"$ "+rs.getString("p_price")+"</div>");
+                
+            }
+              out.print("<hr>"+"</div>"+"</div>");
+            }catch(Exception e){}
+            %>
+           <!-- <div class="finish_padding">
+              <div class="finish_title"><b>訂單明細</b></div>
+               <div style="margin: 2% 10%;">
+               
+                訂單編號：20180723000040<br>
+
+                配送方式：宅配<br>
+
+                付款方式：貨到付款<br>
+
+                收件人：滾滾豬<br>
+
+                應付金額 : NT.414<br><br><br>
+
+                訂購商品名稱與數量：
+                <hr>迪士尼Christmas doodle<br>
+                <div class="finish_num"><br>數量:2</div>
+                <hr>聖誕 靛 藍 手繪 布花 Christmas doodle<br>
+                <div class="finish_num"><br>數量:2</div>
+                <hr>
+                </div>
+            </div>-->
+
+            <br><br>
+            為了保護您的個人資料安全，建議您可隨時登入布行BoShing網站，至會員專區，查詢訂單、最新訊息或修改基本資料。如果您有任何問題，請您至客服中心查詢相關訊息或來信給我們。<br><br>
+
+            -布行BoShing 敬上
+            <br>
+            <br>
+            <br>
+            <br>
+            <a href="member.jsp"><button class="finish_before_bt">點我至會員中心</button></a>
+            <a href="index.jsp"> <button class="finish_next_bt">繼續購物go</button></a>
+        </div>
+        <br>
+    </div>
+
+</body>
+
+</html>

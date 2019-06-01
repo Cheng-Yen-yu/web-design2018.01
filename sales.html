@@ -1,0 +1,371 @@
+<!--↓↓↓↓↓此為jsp格式請勿更改↓↓↓↓↓-->
+<!--<%@page pageEncoding="utf-8"%>-->
+<!--↑↑↑↑↑此為jsp格式請勿更改↑↑↑↑↑-->
+<!--原先連結為index.html的檔案請改連結到index.jsp-->
+<!DOCTYPE html>
+<!--基本元素複製標頭-->
+<html>
+<!--jsp開始-->
+
+<%
+	ResultSet rs;
+	ResultSet rs2;
+	con.createStatement().execute("use shop");
+	String size=(String)request.getParameter("YourLocation"); //尺寸
+	String act =(String)request.getParameter("act");//加入購物車=buy 加入收藏=love
+	String amount =(String)request.getParameter("amount");//訂購數量
+	String total="";//total price variable
+	Boolean b_state=false;
+	String buyer= (String)session.getAttribute("in");//get the logged in account id
+	String good=(String) request.getParameter("p_id");
+	
+	try{//it will accept whatever it receives in the p_id via the url
+		rs2=con.createStatement().executeQuery("select * from goods where p_id='"+good+"'");
+		rs2.next();
+		rs2.getString("p_id");
+	}
+	catch(Exception e)
+	{
+		rs2=con.createStatement().executeQuery("select * from goods where p_id='A01'");
+		rs2.next();
+		good="A01";
+		out.print("<script>alert('您所選擇的商品不存在!!')</script>");
+	}
+	
+	if (act!=null)//是否被加入購物車或被收藏
+	{
+		total= String.valueOf(Integer.parseInt(amount)*Integer.parseInt(rs2.getString("p_price")));//總價
+		if(act.equals("buy"))//加入購物車
+		{
+			
+			rs=con.createStatement().executeQuery("select * from buylist where p_id='"+good+"' and m_account='"+buyer+"'");//indicate if the item with the same size has been added to the shopping cart 
+		
+			while(rs.next()){//to get the state of the current selected item
+				if(rs.getString(1).equals(buyer) && rs.getString(3).equals(size))
+				{
+					b_state=true;//if found the item with current selected size is in shopping cart
+					break;
+				}
+			}
+			
+			
+			if(b_state)//indicate if the item with the same size has been bought
+			{
+				con.createStatement().executeUpdate("update buylist set amount='"+amount+"',totalprice='"+total+"' where item_id='"+good+"' and m_account='"+buyer+"' and size='"+size+"'");
+				//out.print("update buylist set amount='"+amount+"',totalprice='"+total+"' where item_id='"+good+"' and m_account='"+buyer+"' and size='"+size+"'");
+				out.print("<script>alert('成功將"+rs2.getString("p_name")+"的購買數量修改為"+amount+"')</script>");
+			}
+			else{
+				con.createStatement().execute("insert buylist(p_id, amount, size, totalprice, m_account) value('"+good+"','"+amount+"','"+size+"','"+total+"','"+buyer+"')");
+			}
+			out.print("<script>alert('成功將"+rs2.getString("p_name")+"X"+amount+"加入購物車!')</script>");
+			
+		}
+		else if(act.equals("love"))//收藏
+		{
+			con.createStatement().execute("insert love (m_account, p_id) value('"+buyer+"','"+good+"')");
+			out.print("<script>alert('成功收藏"+rs2.getString("p_name")+"!')</script>");
+		}
+	}
+	try{
+		String outlink= (String)request.getParameter("outlink");
+		if(outlink.equals("1")){out.print("<script>window.open('love.jsp','_self')</script>");}
+		else if(outlink.equals("2")){out.print("<script>window.open('product.jsp','_self')</script>");}
+	}
+	catch(Exception e){}
+	
+%>
+
+<!--jsp結束-->
+<head>
+    <meta charset="utf-8">
+								
+													
+    <title>期末專案</title>
+
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" type="text/css" href="sales.css">
+    <link rel="stylesheet" type="text/css" href="product.css">
+    <link rel="stylesheet" type="text/css" href="login.css">
+    <link rel="stylesheet" type="text/css" href="nextpage.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+
+</head>
+<style>
+
+</style>
+
+<body>
+    <div class="all_sale_container">
+        <div id="middle_sale">
+            <div id="container">
+                <div id="sale">
+                    <div id="photo_container">
+                        <div id="sale_im">
+                            <img  id="image" class="sale_photo" onclick='pro_img(<%=rs2.getString("p_image2")%>)' src='<%=rs2.getString("p_image2")%>'>
+                        </div>
+                        <div id="sale_three">
+                            <img class="sale_img" onclick='pro_img("<%=rs2.getString("p_image2")%>")' src='<%=rs2.getString("p_image2")%>'>
+                            <img class="sale_img" onclick='pro_img("<%=rs2.getString("p_image3")%>")' src='<%=rs2.getString("p_image3")%>'>
+                            <img class="sale_img" onclick='pro_img("<%=rs2.getString("p_image4")%>")' src='<%=rs2.getString("p_image4")%>' >
+                        </div>
+                        <div style='clear:both;'></div>
+                    </div>
+                </div>
+                <!--商品照片-->
+
+                <!--側邊攔開始!!!!!!!商品評論和顏色!!!!!!!!!!!!!!!!!!!-->
+
+                <div id="Sidebar">
+                    <div class="sale_title">
+                        <h2><%=rs2.getString("p_name")%></h2>
+                        <p>商品編號 <%=rs2.getString("p_id")%></p>
+                        <a href="#sale_common_pos">
+                            <div style="font-size: 14px;">商品評論(100)</div>
+                        </a>
+                        <hr>
+                        <div class="sales_innertext">
+
+                            <div style="float: left">顏色&emsp;</div>
+                            <%
+                                out.println("<a href='sale_white.jsp?nm="+rs2.getString("p_star")+"'>");
+                            %>
+                            <button class="white" id="1" onclick="test(1)"></button>  
+                            <%
+                                out.println("</a>");
+                                out.println("<a href='sale_blue.jsp?nm="+rs2.getString("p_star")+"'>");
+                            %>  
+                            <button class="blue" id="2" onclick="test(2)"></button>
+                            <%
+                                out.println("</a>");
+                                out.println("<a href='sale_pink.jsp?nm="+rs2.getString("p_star")+"'>");
+                            %>  
+                            <button class="pink" id="3" onclick="test(3)"></button>
+                            <%
+                                out.println("</a>");
+                            %>
+                            <div style="float: left">尺寸&emsp;</div>
+                         <!--form start-->		
+                    <form style="float: left" method="post" >
+						<input type="hidden" name="p_id" value="<%=good%>">
+                                <select name="YourLocation">
+                                    　<option value="S">S</option>
+                                    　<option value="M">M</option>
+                                    　<option value="L">L</option>
+                                    　<option value="XL">XL</option>
+                                </select>
+                         </div>
+                        <div style='clear:both;'></div><br>
+
+                        <div>
+                            　　　　<ul class="btn-numbox" style="margin-top: -20px;">
+                                <li>
+                                    <div>選擇數量</div>
+                                </li>
+                                <li style="margin-left: 10%;">
+                                    <ul class="count">
+                                        <li>
+                                            <div id="num-jian" class="num-jian">-</div>
+                                        </li>
+                                        <li><input type="text" class="input-num" id="input-num" value="1" name="amount" /></li>
+                                        <li>
+                                            <div id="num-jia" class="num-jia">+</div>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <div class="kucun">（庫存:<%=rs2.getString("p_storage")%>）</div>
+                                </li>
+                            </ul>
+                        </div><br>
+                        <div id="tot" style="margin-top: -10px;"><b>NT$<%=rs2.getString("p_price")%></b></div>
+                        <hr>
+                        <button class="btn_login" style="width: 98%" type="submit" name="act" value="love">加入收藏</button><br>
+                        <button class="btn_sign_up" style="width: 98%" type="submit" name="act" value="buy">加入購物車</button>
+                        <hr>
+						</form><!--form end-->
+                        <p style="color: darkred;text-align: center;"><b>超商取貨付款．滿千免運</b></p>
+                    </div>
+                </div>
+            </div>
+            <div style='clear:both;'></div>
+            <!--側邊攔結束-->
+        </div>
+
+        <!--商品廣告-->
+        <div style="padding: 7%;">
+            <div id="product_introduction">
+
+                <img style="margin-top: 2.5%;" src="poster/funtion-poster.png">
+
+                <hr style="width: 50%; margin-top: 2%;">
+                <div class="sale_product_im_container">
+                    <div id="product_common"><b>注意事項及洗滌方式</b></div>
+                    <div style="margin-left: 33%;" id="sale_common_pos" ;>
+                        <!--商品評價Link-->
+                        <div>＊因拍攝燈光效果可能造成與實品色差，請以商品圖顏色為準。<br>
+                            1.請用乾洗溶劑清洗。<br>
+                            2.不可烘乾，不可漂白。<br>
+                            3.如需熨燙，請以低溫墊布熨燙。<br>
+                            4.穿著時，請留意避免與配件包包等他物接觸摩擦。</div>
+                    </div><br>
+                </div>
+
+                <hr style="width: 80%;">
+                <div id="product_common"><b>商品評價</b></div>
+                <div>
+                    <%
+                        sql="SELECT * FROM member, list_shopping,goods where member.m_account=list_shopping.m_account and l_status='6' and  goods.p_id=list_shopping.p_id  and goods.p_id="+request.getParameter("p_id")+" order by l_date DESC;";
+                        rs=con.createStatement().executeQuery(sql);
+                        while(rs.next()){
+                        out.println("<div class='my_common'>");
+                        out.println("<div class='common_id'>"+rs.getString("m_name")+"&nbsp;"+"訂單編號："+rs.getString("l_idd")+"</div>"+"<br>");
+                        out.println("<div class='common_body'>"+rs.getString("message")+"</div>"+"<br>");
+                        out.println("<div class='foot'>");
+                        out.println("<div class='common_id' style='float: left'>"+"樣式尺寸："+rs.getString("p_size")+"&nbsp;"+"</div>");
+                        out.println("<div class='common_id' style='float: left'>"+"購買時間："+rs.getString("l_date")+"</div>");
+                        out.println("<div style='clear:both;'>"+"</div>");
+                        out.println("</div>"+"<br>"+"<hr>"+"<br>"+"</div>");
+
+                    }
+                    %>
+                    <!--換頁-->
+                    <!--單位評論-->
+                    <!--
+
+                    <div class="my_common">
+                        <div class="common_id">訂單編號:A002</div><br>
+                        <div class="common_body">
+                            好看好穿又保暖 實體讚 大推</div><br>
+                        <div class="common_foot">
+                            <div class="common_id" style="float: left">樣式尺寸:暮紅-XXL</div>
+                            <div class="common_id" style="float: right">2018-12-04 08:01</div>
+                            <div style='clear:both;'></div>
+                        </div>
+                        <br>
+                        <hr> <br>
+                    </div>
+                    <div class="my_common">
+                        <div class="common_id">訂單編號:A003</div><br>
+                        <div class="common_body">
+                            比特價1480那款輕又軟穿起來 顏色款式設計質感很好 帽子毛可以再柔軟一點會更棒 買給媽媽說很滿意</div><br>
+                        <div class="common_foot">
+                            <div class="common_id" style="float: left">樣式尺寸:暮紅-XXL</div>
+                            <div class="common_id" style="float: right">2018-12-04 08:01</div>
+                            <div style='clear:both;'></div>
+                        </div>
+                        <br>
+                        <hr> <br>
+                    </div>
+                    <div class="my_common">
+                        <div class="common_id">訂單編號:A004</div><br>
+                        <div class="common_body">
+                            很溫暖，外套外面表面不是一般光滑面，有點霧面感，手感普普，內裡則是光滑面，口袋內是刷毛的，型好看毛好摸，163/46穿M+厚衣差不多剛好</div><br>
+                        <div class="common_foot">
+                            <div class="common_id" style="float: left">樣式尺寸:暮紅-XXL</div>
+                            <div class="common_id" style="float: right">2018-12-04 08:01</div>
+                            <div style='clear:both;'></div>
+                        </div>
+                        <br>
+                        <hr> <br>
+                    </div>
+                    <div class="my_common">
+                        <div class="common_id">訂單編號:A005</div><br>
+                        <div class="common_body">材質很好👍只是這次的版型不太喜歡😟之前購買過無縫長版的人版型就很棒❤️這款的感覺袖口跟下擺都做太鬆了，毛流也有點怪怪的🙁整體穿起來真的很顯胖臃腫☹️已退貨希望可以改進😞</div><br>
+                        <div class="common_foot">
+                            <div class="common_id" style="float: left">樣式尺寸:暮紅-XXL</div>
+                            <div class="common_id" style="float: right">2018-12-04 08:01</div>
+                            <div style='clear:both;'></div>
+                        </div>
+                        <br>
+                        <hr> <br>
+                    </div>
+
+
+                    <br>
+
+                    <ul class="pagination" id="ttt">
+                        <a href="#sale_common_pos">«</a>
+                        <a class="active" href="#sale_common_pos">1</a>
+                        <a class="test" href="#sale_common_pos">2</a>
+                        <a class="test" href="#sale_common_pos">3</a>
+                        <a class="test" href="#sale_common_pos">4</a>
+                        <a class="test" href="#sale_common_pos">5</a>
+                        <a href="#sale_common_pos">»</a>
+                    </ul>-->
+                </div>
+                <!--換頁-->
+                <!--評論結束空行-->
+
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+<script>
+    var num_jia = document.getElementById("num-jia");
+    var num_jian = document.getElementById("num-jian");
+    var input_num = document.getElementById("input-num");
+
+    num_jia.onclick = function() {
+		
+        if(parseInt(input_num.value)<parseInt(<%=rs2.getString("p_storage")%>)){input_num.value = parseInt(input_num.value) + 1;}
+		else{input_num.value = parseInt(<%=rs2.getString("p_storage")%>);}
+		document.getElementById('tot').innerHTML=("<b>NT$"+parseInt(input_num.value)*<%=rs2.getString("p_price")%>+"</b>");
+    }
+
+    num_jian.onclick = function() {
+
+        if (input_num.value <= 1) {
+            input_num.value = 1;
+        } else {
+
+			input_num.value = parseInt(input_num.value) - 1;
+			document.getElementById('tot').innerHTML=("NT$"+parseInt(input_num.value)*<%=rs2.getString("p_price")%>);
+        }
+
+    }
+
+</script>
+
+	
+
+<script>
+    $(function() {
+
+        $(".test").click(function() { // 點擊div元素
+            $("a").removeClass("active");
+            $(this).addClass("active"); // 使用children('li')獲取div下的li元素，然后設定顏色為red(即红色)
+
+
+        });
+
+    });
+
+</script>
+<script type="text/javascript">
+    function pro_img(big) {
+        var id = big;
+
+        document.getElementById("image").src = id;
+    }
+
+</script>
+<script>
+    var t = 1;
+
+    function test(x) {
+
+        if (x == 1 && t == 1) {
+            document.getElementById(x).style.borderColor = "black";
+        } else if (x != t) {
+            document.getElementById(x).style.borderColor = "black";
+            document.getElementById(t).style.borderColor = "#dddddd";
+        }
+        t = x;
+    }
+
+</script>

@@ -1,0 +1,117 @@
+.member_all {
+    color: #666;
+    font: 14px/24px "Open Sans", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", Sans-Serif;
+}
+
+.tabs {
+    /*整體*/
+    margin-right: 10%;
+    margin-left: 10%;
+    padding: 5%;
+    width: 70%;
+
+}
+
+.tabs-nav li {
+    float: left;
+    width: 50%;
+}
+
+.tabs-nav li:first-child .tab_a {
+    border-right: 0;
+    border-top-left-radius: 6px;
+}
+
+.tabs-nav li:last-child .tab_a {
+    border-top-right-radius: 6px;
+}
+
+.tab_a {
+    background: #eaeaed;
+    border: 1px solid #cecfd5;
+    color: #0087cc;
+    display: block;
+    font-weight: 600;
+    padding: 10px 0;
+    text-align: center;
+    text-decoration: none;
+}
+
+.tab_a:hover {
+    color: #ff7b29;
+}
+
+.tab-active tab_a {
+    background: #fff;
+    border-bottom-color: transparent;
+    color: #2db34a;
+
+}
+
+.tabs-stage {
+    background-color: #ffececcc;
+    border: 1px solid #cecfd5;
+    border-radius: 0 0 6px 6px;
+    border-top: 0;
+    clear: both;
+    padding: 24px 30px;
+    position: relative;
+    top: -1px;
+    /*內容寬*/
+
+}
+
+.member_button {
+    width: 15%;
+    font-weight: bold;
+    margin-left: 65.5%;
+    background-color: #ef5350;
+    border: none;
+    padding: 5px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.member_button:hover {
+    background-color: coral
+}
+
+.member_button_2 {
+    width: 15%;
+    margin-left: 50.5%;
+    font-weight: bold;
+    background-color: #ef5350;
+    border: none;
+    padding: 5px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.member_button_2:hover {
+    background-color: darkorange
+}
+
+
+/*眼睛顯示隱藏密碼圖片*/
+input {
+    width: 80%;
+    padding: 10px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    transition: 0.5s;
+    outline: none;
+}
+
+input:focus {
+    outline: none;
+}
+
+
+.see_img {
+    width: 40px;
+    height: 25px;
+    position: absolute;
+    right: 20%;
+    margin: 15px;
+}

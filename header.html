@@ -1,0 +1,84 @@
+<!--↓↓↓↓↓此為jsp格式請勿更改↓↓↓↓↓-->
+<!--<%@page pageEncoding="utf-8"%>-->
+<!--↑↑↑↑↑此為jsp格式請勿更改↑↑↑↑↑-->
+<!--原先連結為index.html的檔案請改連結到index.jsp-->
+<!DOCTYPE html>
+<!--基本元素複製標頭-->
+<html>
+
+<head>
+    <meta charset="utf-8">
+
+    <title>期末專案</title>
+    <link rel=stylesheet type="text/css" href="index.css">
+    <link rel=stylesheet type="text/css" href="drop_down_menu.css">
+</head>
+<header>
+    <div id="logo">
+        <a href="index.jsp"><img src="img/logo.png" class="logo"></a>
+    </div>
+
+    <div id="nav">
+        <ul class="drop-down-menu">
+            <li>
+                <a href="index.jsp#about" style="text-decoration:none;">關於我們</a>
+                <ul>
+                    <li><a href="index.jsp#fund" style="text-decoration:none;">成立宗旨</a></li>
+                    <li><a href="index.jsp#idea" style="text-decoration:none;">產品理念</a></li>
+                    <li><a href="index.jsp#member" style="text-decoration:none;">成員介紹</a></li>
+                    <li><a href="contact.jsp" style="text-decoration:none;">聯絡我們</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="product.jsp" style="text-decoration:none;">包袋總覽</a>
+                <ul>
+                    <li><a href="product.jsp" style="text-decoration:none;">托特包</a></li>
+                    <li><a href="product.jsp" style="text-decoration:none;">萬用提袋</a></li>
+                    <li><a href="product.jsp" style="text-decoration:none;">多功能袋</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="product.jsp" style="text-decoration:none;">文具用品</a>
+                <ul>
+                    <li><a href="product.jsp" style="text-decoration:none;">名片夾</a></li>
+                    <li><a href="product.jsp" style="text-decoration:none;">文件袋</a></li>
+                    <li><a href="product.jsp" style="text-decoration:none;">書衣</a></li>
+                    <li><a href="product.jsp" style="text-decoration:none;">筆袋</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="product.jsp" style="text-decoration:none;">衣著總覽</a>
+                <ul>
+                    <li><a href="product.jsp" style="text-decoration:none;">短T</a></li>
+                    <li><a href="product.jsp" style="text-decoration:none;">鋪棉帽T</a></li>
+                    <li><a href="product.jsp" style="text-decoration:none;">棉麻洋裝</a></li>
+                </ul>
+            </li>
+
+
+        </ul>
+    </div>
+    <div id="funtion_login">
+        <!--標頭燈入註冊-->
+        <ul class="drop-down-menu_2">
+            <li><a href="login.jsp" style="text-decoration:none;">登入 / 註冊</a></li>
+        </ul>
+    </div>
+    <div id="funtion_login">
+        <ul class="drop-down-menu_2">
+            <li><a href="index.jsp" style="text-decoration:none;">歡迎，滾滾</a></li>
+        </ul>
+    </div>
+    <div id="funtion">
+        <a href="login.jsp"><img src="icon/user.png" class="righticon_img"></a>
+        <!--判斷是否有登入在跳轉member.jsp-->
+        <a href="shopcar.jsp"><img src="icon/shopcar.png" class="righticon_img"></a>
+        <a href="shopcar.jsp#like"><img src="icon/heart.png" class="righticon_img"></a>
+        <a href="search.jsp"><img src="icon/search.png" class="righticon_img"></a>
+
+        <a href="member.jsp" style="text-decoration:none;">&nbsp;登出</a>
+    </div>
+
+
+    <div style='clear;'></div>
+</header>

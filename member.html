@@ -1,0 +1,117 @@
+<!--↓↓↓↓↓此為jsp格式請勿更改↓↓↓↓↓-->
+<!--<%@page pageEncoding="utf-8"%>-->
+<!--↑↑↑↑↑此為jsp格式請勿更改↑↑↑↑↑-->
+<!--原先連結為index.html的檔案請改連結到index.jsp-->
+<!DOCTYPE html>
+<!--基本元素複製標頭-->
+<html>
+
+<head>
+    <meta charset="utf-8">
+
+    <title>期末專案</title>
+
+    <link rel="stylesheet" type="text/css" href="contact.css">
+    <link rel="stylesheet" type="text/css" href="member.css">
+    <link rel="stylesheet" type="text/css" href="sales.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+</head>
+
+
+<body>
+    <div style="margin-top:5%; ">
+        <div class="member_all">
+            <div class="tabs">
+                <ul style='list-style-type:none;' class="tabs-nav">
+                    <li><a class="tab_a" href="#tab-1">更改會員資料</a></li>
+                    <li><a class="tab_a" href="#tab-2">我的購物紀錄</a></li>
+                </ul>
+                <div class="tabs-stage">
+                    <div id="tab-1">
+                        <form style="margin-left: 15%;">
+                            <strong>
+                                <p class="label">1 / 會員名稱:&emsp;滾滾豬<br></p>
+                            </strong>
+
+                            <strong>
+                                <p class="label">2 / 信箱:</p>
+                            </strong>
+
+                            <input type="text" placeholder="更改你的信箱 ( ๑ > ω •́  )۶  " id="email" name="email">
+                            <br> <strong>
+                                <p class="label">3 / 電話:</p>
+                            </strong>
+                            <input type="text" placeholder="更改你的電話 ( ๑ > ω •́  )۶" id="phone" name="phone"><br>
+                            <strong>
+                                <p class="label">4 / 地址:</p>
+                            </strong>
+                            <input type="text" placeholder="更改你的地址 ( ๑ > ω •́  )۶" id="address" name="address"><br>
+                            <strong>
+                                <p class="label">5 / 密碼:</p>
+                            </strong>
+                            <input type="text" placeholder="更改你的密碼 ( ๑ > ω •́  )۶" id="password" name="password"><br><br>
+                            <input type="button" class="member_button_2" value="submit">
+                        </form>
+                    </div>
+                    <div id="tab-2">
+                        <form style="margin-left: 15%;">
+                            <!--商品評論重複格-->
+                            <table class="my_common">
+                                <table class="common_id">訂單編號:A005&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;購買時間:2018-12-04 08:01</table>
+                                <table class="common_id">商品名稱:滾滾紅塵大容量包&emsp;&emsp;樣式尺寸:暮紅-XXL</table>
+                                <table style="font-color: black;">填寫商品評價:</table>
+                                <textarea style="resize:none;width:80%;height:100px;"></textarea>
+                                <br>
+                                <input type="button" value="確認送出" class="member_button"  id="btn_hide" ;>
+                            </table>
+                            <hr style="margin-left: -2%;width: 85%;">
+                            <!--商品評論重複格-->
+                            <table class="my_common">
+                                <table class="common_id">訂單編號:A005&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;購買時間:2018-12-04 08:01</table>
+                                <table class="common_id">商品名稱:滾滾紅塵大容量包&emsp;&emsp;樣式尺寸:暮紅-XXL</table>
+                                <table style="font-color: black;">填寫商品評價:</table>
+                                <textarea style="resize:none;width:80%;height:100px;"></textarea>
+                            </table>
+                            <hr style="margin-left: -2%;width: 85%;">
+
+                            <table class="my_common">
+                                <table class="common_id">訂單編號:A005&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;購買時間:2018-12-04 08:01</table>
+                                <table class="common_id">商品名稱:滾滾紅塵大容量包&emsp;&emsp;樣式尺寸:暮紅-XXL</table>
+                                <table style="font-color: black;">填寫商品評價:</table>
+                                <textarea style="resize:none;width:80%;height:100px;"></textarea>
+                            </table>
+                            <hr style="margin-left: -2%;width: 85%;">
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+
+<script>
+    // Show the first tab by default
+    $('.tabs-stage div').hide();
+    $('.tabs-stage div:first').show();
+    $('.tabs-nav li:first').addClass('tab-active');
+
+    // Change tab class and display content
+    $('.tabs-nav a').on('click', function(event) {
+        event.preventDefault();
+        $('.tabs-nav li').removeClass('tab-active');
+        $(this).parent().addClass('tab-active');
+        $('.tabs-stage div').hide();
+        $($(this).attr('href')).show();
+    });
+
+</script>
+<script>
+var btn_hide = document.getElementById('btn_hide');
+btn_hide.onclick = function () {
+this.style.display = 'none';
+    alert("感謝你的評價");
+};
+</script>

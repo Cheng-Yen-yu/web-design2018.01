@@ -1,0 +1,374 @@
+<!--↓↓↓↓↓此為jsp格式請勿更改↓↓↓↓↓-->
+<!--<%@page pageEncoding="utf-8"%>-->
+<!--↑↑↑↑↑此為jsp格式請勿更改↑↑↑↑↑-->
+<!--原先連結為index.html的檔案請改連結到index.jsp-->
+<!--jsp開始-->
+<form action="order.jsp" method="post">
+<%
+    
+    acc=null;
+    pas=null;
+    try{
+        Cookie getC[]=request.getCookies();
+        for(int i=0;i<getC.length;i++)
+        {
+            if(getC[i].getName().equals("getin"))
+            {
+                String[] sp=getC[i].getValue().split("-");
+                acc=sp[0];
+                pas=sp[1];
+            }
+        }
+     }    
+    catch(Exception e)
+    {
+        out.write("<script language=javascript>alert('請先登入');</script>");           
+        response.setHeader("refresh","0;URL=login.jsp") ;
+    }
+	ArrayList<String> del_url =new ArrayList<String>();
+	////del_url.add("nothing here");
+	
+	String goods="";//to list all of the goods in the buy list the current user buys
+	String buyer=(String)session.getAttribute("in");//to get the current logged in user
+	con.createStatement().execute("use shop");
+	ResultSet rs=con.createStatement().executeQuery("SELECT * FROM buylist,goods where m_account='"+acc+"' and goods.p_id=buylist.p_id;");
+	ResultSet g_name;
+	String temp_p="";
+	int seq=-1;
+	String del="";
+
+	try{
+			del=(String)request.getParameter("del");
+			if(!del.equals("")||del==null){
+			con.createStatement().executeUpdate("delete from buylist where m_account='"+session.getAttribute("in")+"' and p_id='"+del+"'");
+			response.sendRedirect("shopcart.jsp");
+			}
+	}
+	catch(Exception e){}
+
+	while(rs.next()){
+	seq++;
+	g_name=con.createStatement().executeQuery("select * from goods where p_id='"+rs.getString("p_id")+"'");
+	g_name.next();
+	goods+="<tr><td class='checkbox'><input type='checkbox' class='check-one check'  name='chk' value='"+rs.getString("p_id")+","+rs.getString("size")+","+seq+"' /></td>";//item(s) chose to be delete
+    goods+="<td class='goods'>";
+    goods+="<img style='margin-left: 10%;' src='"+g_name.getString("p_image")+"' /><br><br>";//loadd the cover picture of the product
+    goods+="<span class='goodsTitle'>";
+	goods+="<a href='sales.jsp?p_id="+rs.getString("p_id")+"' >";
+	goods+="&emsp;"+g_name.getString("p_name")+"</a>";
+	goods+="</span><br></td>";//show the good name and the size of it
+    goods+="<td class='price'>"+g_name.getString("p_price")+"</td>";//show the price
+    goods+="<td class='count'>";
+    
+    goods+="<input type='number' class='count-input' value='"+rs.getString("amount")+"' name='amount' /></td>";//amount viewer
+    
+	goods+="<td>"+g_name.getString("p_color")+rs.getString("size")+"</td>";//increase button
+  	goods+="<td class='subtotal'>"+g_name.getString("p_price")+"</td>";
+    goods+="<td>";	
+   
+	////del_url.add("shopcart.jsp?p_id="+rs.getString("p_id")+"&size="+rs.getString("size"));
+	
+	goods+="<a href='shopcart.jsp?del="+rs.getString("p_id")+"&size="+rs.getString("size")+"'><img src='icon/garbage.png' class='deleteOne'></td></tr>";	
+    %>
+    
+     <input type="hidden" name="pdid" value="<%=rs.getString("p_id")%>">
+<%
+    }
+%>
+<!--jsp結束-->
+
+
+<!DOCTYPE html>
+<!--基本元素複製標頭-->
+<html>
+
+<head>
+    <meta charset="utf-8">
+
+    <title>期末專案</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" type="text/css" href="shopcart.css">
+    <link rel="stylesheet" type="text/css" href="product.css">
+</head>
+
+<body>
+
+	<!--購物車開頭-->
+    <div class="content">
+        <br>
+        <div class="topic"><b>- 我的購物車 -</b></div>
+
+        <img src="img/shoping1.png">
+
+        <div class="cartMain">
+            <table id="cartTable">
+                <thead>
+                    <tr>
+                        <th>
+                            <label for="fl select-all">
+                                <input type="checkbox" class="check-all check" name='chkall' />
+                                <span><a href="javascript:void(0)" class="selallSPAN">&nbsp;全選</a></span>
+                            </label>
+                        </th>
+                        <th style="width: 38%;">商品</th>
+                        <th style="width: 10%;">價格</th>
+                        <th>數量</th>
+                        <th style="width: 10%;">樣式</th>
+                        <th style="width: 10%;">小計</th>
+                        <th >刪除</th>
+                    </tr>
+                </thead>
+               <tbody>
+               <!--商品-->
+			
+					<%out.print(goods);%>
+                </tbody>
+            </table>
+
+        </div>
+        <div class="cartFooter" id="cartFooter">
+            <div class="selall fl">
+                <label for="fl select-all">
+                    <input type="checkbox" class="check-all check" name="abc"/>
+                    <span><a href="javascript:void(0)" class="selallSPAN">&nbsp;全選</a></span>
+                </label>
+            </div>
+			<a href="#" id="multiDelete" class="fl delete" type="submit" name="del_cart" value="outlink">多選刪除</a>
+			
+			<!--<button id="allDelete" class="fl delete" type="submit" >清空購物車</button>-->
+			
+            <!--<a href="#" id="multiDelete" class="fl delete">多選刪除</a>-->
+            <a href="shopcart.jsp?p_id=all&size=all" id="allDelete" class="fl delete" name="del_cart" value="outlink">清空購物車</a>
+           
+                <button type="submit" class="fr closing" name="del_cart" value="close">結帳去</button>
+            
+			</form>
+            <div class="fr total">合計<span id="priceTotal">0</span>元</div>
+            <div class="fr selected" id="selected">
+                已選商品
+                <span id="selectedTotal">0</span>件
+              	<span class="arrow up">︽點我查看</span>
+                <span class="arrow down">︾</span>
+            </div>
+            <div class="selected-view">
+                <div id="selectedViewList" class="clearfix">
+
+                </div>
+                <span class="arrow">◆<span>◆</span></span>
+            </div>
+        </div>
+    </div>
+
+   
+</body>
+
+</html>
+
+
+<script>
+    window.onload = function() {
+       
+        if (!document.getElementsByClassName) {
+            document.getElementsByClassName = function(cls) {
+                var ret = [];
+                var els = document.getElementsByTagName('*');
+                for (var i = 0; i < els.length; i++) {
+                    if (els[i].className === cls ||
+                        els[i].className.indexOf(cls + ' ') >= 0 ||
+                        els[i].className.indexOf(' ' + cls) >= 0 ||
+                        els[i].className.indexOf(' ' + cls + ' ') >= 0) {
+                        ret.push(els[i]);
+                    }
+                };
+                return ret;
+            }
+        }
+        var cartTable = document.getElementById('cartTable');
+        var tr = cartTable.children[1].rows; //children子節點;
+        var checkInputs = document.getElementsByClassName('check');
+        var checkAllInput = document.getElementsByClassName('check-all');
+        var selectedTotal = document.getElementById('selectedTotal');
+        var priceTotal = document.getElementById('priceTotal');
+        var selected = document.getElementById('selected');
+        var cartFooter = document.getElementById('cartFooter');
+        var selectedViewList = document.getElementById('selectedViewList');
+        var multiDelete = document.getElementById('multiDelete');
+        var allDelete = document.getElementById('allDelete');
+        var selallSPAN = document.getElementsByClassName('selallSPAN');
+
+        //選擇框事件；
+        for (var i = 0; i < checkInputs.length; i++) {
+            checkInputs[i].onclick = function() {
+                if (this.className === 'check-all check') { //全選；
+                    for (var j = 0; j < checkInputs.length; j++) {
+                        checkInputs[j].checked = this.checked;
+                    }
+                };
+                if (this.checked == false) {
+                    for (var k = 0; k < checkAllInput.length; k++) {
+                        checkAllInput[k].checked = false;
+                    }
+                }
+                getTotal();
+            }
+        };
+        selallSPAN[0].onclick = selallSPAN[1].onclick = function() {
+            for (var k = 0; k < checkAllInput.length; k++) {
+                if (checkAllInput[k].checked) {
+                    checkAllInput[k].checked = false;
+
+                } else {
+                    checkAllInput[k].checked = true;
+                }
+            }
+            for (var j = 0; j < checkInputs.length; j++) {
+                checkInputs[j].checked = checkAllInput[0].checked;
+            }
+            getTotal();
+        }
+
+        //計算；
+        function getTotal() {
+            var selected = 0;
+            var price = 0;
+            var HTMLstr = '';
+            for (var i = 0; i < tr.length; i++) {
+                var perCount = tr[i].getElementsByTagName('input')[1].value;
+                if (tr[i].getElementsByTagName('input')[0].checked) {
+                    tr[i].className = "on";
+                  selected += parseInt(tr[i].getElementsByTagName('input')[1].value);
+                    price += parseFloat(tr[i].cells[4].innerHTML);
+                    HTMLstr += '<div><img src="' + tr[i].getElementsByTagName('img')[0].src + '"/><span class="selCount">' + perCount + '</span><span class="del" index="' + i + '">取消選擇</span></div>'
+                } else {
+                    tr[i].className = " ";
+                }
+            };
+            selectedTotal.innerHTML = selected;
+            priceTotal.innerHTML = price.toFixed(0);
+            selectedViewList.innerHTML = HTMLstr;
+            //選中0时；
+            if (selected == 0) {
+                cartFooter.className = "cartFooter";
+            }
+        }
+
+        //已選框的選擇；
+        selected.onclick = function() {
+            if (cartFooter.className == 'cartFooter') {
+                if (selectedTotal.innerHTML != 0) {
+                    cartFooter.className = 'cartFooter show';
+                }
+            } else {
+                cartFooter.className = "cartFooter";
+            }
+        }
+
+        //取消選擇---》事件代理
+        selectedViewList.onclick = function(e) {
+            e = e || window.event;
+            var el = e.srcElement;
+            if (el.className == "del") {
+                var index = el.getAttribute('index');
+                var input = tr[index].getElementsByTagName('input')[0];
+                input.checked = false;
+                input.onclick();
+            }
+        }
+
+        //加减事件；
+        for (var i = 0; i < tr.length; i++) {
+            //加减按钮；
+            tr[i].onclick = function(e) {
+                e = e || window.event;
+                document.onselectstart = new Function("event.returnValue=false;");
+                var el = e.target || e.srcElement;
+                var cls = el.className;
+                var input = this.getElementsByTagName('input')[1];
+                var val = parseInt(input.value);
+                var reduce = this.getElementsByTagName('span')[3];
+                switch (cls) {
+                    case 'add':
+                        input.value = val + 1;
+                        reduce.innerHTML = '';
+                        getSubtotal(this);
+                        break;
+                    case 'reduce':
+                        if (val > 1) {
+                            input.value = val - 1;
+                            getSubtotal(this);
+                        }
+                        if (input.value <= 1) {
+                            reduce.innerHTML = '';
+                        }
+                        break;
+                    case 'deleteOne':
+                        //單行刪除；
+                        var conf = confirm('確定要刪除嗎？');
+                        if (conf) {
+                            this.parentNode.removeChild(this);
+                        }
+                        break;
+                    default:
+                        break;
+                }
+                getTotal();
+            }
+            //input輸入事件；
+            tr[i].getElementsByTagName('input')[1].onkeyup = function() {
+                var val = parseInt(this.value);
+                var tr = this.parentNode.parentNode;
+                var reduce = tr.getElementsByTagName('span')[3];
+                if (isNaN(val) || val < 1) {
+                    val = 1;
+                }
+                this.value = val; //輸入控制；
+                if (val <= 1) {
+                    reduce.innerHTML = "";
+                } else {
+                    reduce.innerHTML = "";
+                }
+                getSubtotal(tr);
+                getTotal();
+            }
+        };
+        //小计
+        function getSubtotal(tr) {
+            var tds = tr.cells;
+            var price = parseFloat(tds[2].innerHTML);
+            var count = tr.getElementsByTagName('input')[1].value;
+            var subTotal = parseFloat(price * count).toFixed(0); //小數點第0位
+            tds[5].innerHTML = subTotal;
+        }
+
+        //刪除；
+        multiDelete.onclick = function() {
+            if (selectedTotal.innerHTML != '0') {
+                var conf = confirm('確定要刪除嗎？');
+                if (conf) {
+                    cartDel();
+                    getTotal();
+                }
+            }
+        }
+        allDelete.onclick = function() {
+            var conf = confirm('確定要清空購物車嗎？');
+            if (conf) {
+                checkAllInput[0].checked = true;
+                checkAllInput[0].onclick();
+                cartDel();
+                getTotal();
+            }
+        }
+
+        function cartDel() {
+            for (var i = 0; i < tr.length; i++) {
+                var input = tr[i].getElementsByTagName('input')[0];
+                if (input.checked) {
+                    tr[i].parentNode.removeChild(tr[i]);
+                    i--; //刪除時注意i 的變化；
+                };
+            };
+        }
+    }
+
+</script>

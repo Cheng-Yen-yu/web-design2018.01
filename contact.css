@@ -1,0 +1,281 @@
+#middle_feedback {
+    background-color: white;
+    width: 70%;
+    box-shadow: 0px 3px 12px #6c6c6ccc;
+    margin-top: 9%;
+    margin-left: 15%;
+    margin-right: 10%;
+    margin-bottom: 5%;
+
+}
+
+#feedback {
+    
+    padding: 2%;
+    margin-top: -2%
+}
+
+.feedback_right {
+    border-radius: 5px;
+    box-shadow: 4px 4px 12px -2px rgba(20%, 20%, 40%, 0.5);
+    float: right;
+    background-color: #FFDDAA;
+    width: 80%;
+
+
+}
+
+.feedback_left {
+    height: auto;
+    float: left;
+    background-color: pink;
+    width: 20%;
+
+}
+
+.inner_feedback_2 {
+    margin-left: 20%;
+    margin-right: 20%;
+    margin-bottom: 2%;
+
+}
+
+.inner_about {
+    margin-left: 5%;
+    margin-right: 5%;
+    font-weight: 700;
+}
+
+/*產品理念*/
+.about_us_img {
+    padding: 2.5%;
+    margin: 5%;
+    background-color: white;
+    box-shadow: 0px 3px 12px #6c6c6ccc;
+}
+
+
+.about_us_title_1 {
+
+    font-size: 18px
+}
+
+.about_us_title {
+    margin-left: 12%;
+    font-size: 18px
+}
+
+.about_us_detail {
+    color: #272727;
+}
+
+/*性別*/
+.gender {
+    position: relative;
+    line-height: 30px;
+}
+
+input[type="radio"] {
+    width: 20px;
+    height: 20px;
+    opacity: 0;
+}
+
+label {
+    position: absolute;
+    left: 5px;
+    top: 3px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 1px solid #999;
+}
+
+
+input:checked + label {
+    background-color: #fe6d32;
+    border: 1px solid #fe6d32;
+}
+
+input:checked + label::after {
+    position: absolute;
+    content: "";
+    width: 5px;
+    height: 10px;
+    top: 3px;
+    left: 6px;
+    border: 2px solid #fff;
+    border-top: none;
+    border-left: none;
+    transform: rotate(45deg)
+}
+
+/*意見類型*/
+
+.select_common {
+
+    width: 200px;
+    height: 40px;
+    border-radius: 5px;
+
+    box-shadow: 0 0 5px #ccc;
+    position: relative;
+}
+
+select {
+
+    border: none;
+
+    outline: none;
+    font-weight: bold;
+    font-size: 14px;
+    width: 100%;
+    height: 35px;
+    line-height: 40px;
+    appearance: none;
+    padding-left: 55px;
+}
+
+select_common:after {
+    content: "";
+    width: 14px;
+    height: 20px;
+    background: url(img/xiala.png) no-repeat center;
+    position: absolute;
+    right: 20px;
+    top: 45%;
+    pointer-events: none;
+}
+
+/*信箱*/
+input[type=text] {
+    width: 80%;
+    padding: 10px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    transition: 0.5s;
+    outline: none;
+}
+
+input[type=text]:focus {
+    border: 3px solid #555;
+}
+
+
+.contact_bt {
+    margin-left: 30%;
+    margin-top: 5%;
+    background-color: #ef5350;
+    border: none;
+    padding: 8px 27px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+
+}
+
+.contact_bt:hover {
+    background-color: coral
+}
+.contact_ti{
+    margin-left: 10px;
+    font-weight: bold;
+
+}
+
+div.rating{
+    margin-left: 0px;
+}
+
+.rating >input {
+        display: none;
+    }
+    .rating >input {
+        position: absolute;
+        clip: rect(0 0 0 0);
+    }
+    .rating >input {
+        position: absolute;
+        opacity: 0;
+    }
+    .rating {
+        font-size: 0;
+        display: table;
+    }
+
+    .rating > label {
+        color: #ddd;
+        float: right;
+    }
+
+    .rating > label:before {
+        padding: 5px;
+        font-size: 40px;
+        line-height: 1em;
+        display: inline-block;
+        content: "★";
+        cursor: pointer;
+    }
+
+    .rating > input:checked ~ label,
+    .rating:not(:checked) > label:hover,
+    .rating:not(:checked) > label:hover ~ label {
+        color: #FFD700;
+    }
+
+    .rating > input:checked ~ label:hover,
+    .rating > label:hover ~ input:checked ~ label,
+    .rating > input:checked ~ label:hover ~ label {
+        opacity: 0.5;
+    }
+
+
+.rat >input {
+        display: none;
+    }
+    .rat >input {
+        position: absolute;
+        clip: rect(0 0 0 0);
+    }
+    .rat >input {
+        position: absolute;
+        opacity: 0;
+    }
+    .rat {
+        font-size: 0;
+        display: table;
+    }
+
+    .rat > label {
+        color: #ddd;
+        float: right;
+    }
+
+    .rat > label:before {
+        padding: 5px;
+        font-size: 40px;
+        line-height: 1em;
+        display: inline-block;
+        content: "★";
+        cursor: pointer;
+    }
+
+    .rat > input:checked ~ label{
+        color: #FFD700;
+    }
+
+div.footer{
+    height: 155px;
+    box-sizing: border-box;
+    position: absolute;
+    left:0%;
+    bottom: auto;
+    width: 100%;
+    background-color: #87CECB;
+    text-align: center;
+    font-family: 微軟正黑體;
+    font-size: 20px;
+    top: 1400px;
+    color: #2B5555;
+}                  

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<!--基本元素複製區塊標頭-->
+<html>
+
+<head>
+    <title>期末專案</title>
+    <meta charset="utf-8">
+     <link rel="stylesheet" type="text/css" href="index.css"> 
+    <link rel="stylesheet" type="text/css" href="shop_list.css">
+</head>
+
+<body>
+    <!--網站主要內容區塊-->
+    <div id="middle">
+        <div id="step_box">
+            <div class="step_box_icon">
+                <img src="icon/one1.png">&emsp;&emsp;
+                <img src="icon/point.png">&emsp;&emsp;
+                <img src="icon/two2.png" style="opacity: 0.3;">&emsp;&emsp;
+                <img src="icon/point.png" style="opacity: 0.3;">&emsp;&emsp;
+                <img src="icon/three3.png" style="opacity: 0.3;">
+            </div>
+        </div>
+        <div id="minding">
+            <div class="minding_words">
+                提醒您
+            </div>
+        </div>
+
+        <div id="shoplist">
+            <div id="shoplist_title">
+                <div class="shoplist_title_top">商品資料</div>
+                <div class="shoplist_title_top">單件價格</div>
+                <div class="shoplist_title_top">數量</div>
+                <div class="shoplist_title_top">小計</div>
+                <div class="shoplist_title_top">刪除商品</div>
+            </div>
+            <div class="shoplist_item">
+                <div class="shop_item"><img class="shop_item_img" src="img/pig.jpg"> 商品一</div>
+                <div class="shop_item"><span>NT$100</span></div>
+                <div class="shop_item">
+                    <div class="shop_item_count"><img src="icon/plus.png"></div>
+                    <input class="shop_item_count" type="text" name="amount" />
+                    <img class="shop_item_count" src="icon/minus.png">
+                </div>
+                <div class="shop_item">100</div>
+                <div class="shop_item"><a href=""><img class="x_icon" src="img/x.png"></a></div>
+            </div>
+            <div class="shoplist_item">
+                <div class="shop_item"><img class="shop_item_img" src="img/pig.jpg"> 商品一</div>
+                <div class="shop_item"><span>NT$100</span></div>
+                <div class="shop_item"><input type="text" name="amount" /></div>
+                <div class="shop_item">100</div>
+                <div class="shop_item"><a href=""><img class="x_icon" src="img/x.png"></a></div>
+            </div>
+        </div>
+
+        <div id="coupon">
+            <p class="coupon_word">已享用優惠</p>
+            <p class="coupon_word"><span class="coupon_wordbox">優惠促銷</span>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;商品滿1000，免運費</p>
+        </div>
+        <div style="clear: both;"></div>
+        <div id="shoplist_button">
+            <div class="shoplist_button_item">總共：<span>2</span>件</div>
+            <div class="shoplist_button_item">商品小計：NT$<span>200</span> </div>
+            <div class="shoplist_button_item">運費：尚未選擇</div>
+            <hr style="background-color: lightblue;">
+            <div class="shoplist_button_item">總計：NT$<span>200</span></div>
+            <div id="shoplist_button_click">
+                <div id="goback">
+                    <a href="javascript:history.back()">&#60;&#60;返回網站</a>
+                </div>
+                <div id="submit">
+                    <a href="checkout.html"><button type="submit" value="Submit" class="submit">下一步</button></a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div style="clear: both;"></div>
+</body>
+
+</html>

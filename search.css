@@ -1,0 +1,46 @@
+.search_icon {
+    width: 10%;
+}
+
+.search {
+    width: 96%;
+    padding: 0.5%;
+ 
+    
+}
+
+.search_img {
+    margin-top: 5%;
+    width: 25%;
+    float: right;
+}
+.search_img_2 {
+    margin-left: 4%;
+    margin-top: 2%;
+    width: 28%;
+    float: left;
+}
+
+.search_form {
+    float: left;
+    margin-top: 10%;
+    margin-left: 8%;
+    width: 30%
+
+}
+
+#target {
+    color: #666;
+    font-size: 15px;
+}
+
+.search_button {
+    background: #c48888;
+    color: #fff;
+    padding: 1%;
+}
+.search_topic{
+     font-size: 24px;
+    margin-top: 2%;
+    text-align: center;
+}

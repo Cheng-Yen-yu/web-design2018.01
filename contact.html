@@ -1,0 +1,130 @@
+<!--↓↓↓↓↓此為jsp格式請勿更改↓↓↓↓↓-->
+<!--<%@page pageEncoding="utf-8"%>-->
+<!--↑↑↑↑↑此為jsp格式請勿更改↑↑↑↑↑-->
+
+<!DOCTYPE html>
+<!--基本元素複製區塊標頭-->
+<html>
+
+<head>
+    <title>期末專案</title>
+    <meta charset="utf-8">
+
+    <link rel="stylesheet" type="text/css" href="index.css">
+    <link rel="stylesheet" type="text/css" href="contact.css">
+    <link rel="stylesheet" type="text/css" href="button.css">
+    <link rel="stylesheet" type="text/css" href="sales.css">
+    <link rel="stylesheet" type="text/css" href="login.css">
+    <link rel="stylesheet" type="text/css" href="about_us.css">
+
+
+</head>
+
+<body>
+	<%
+		try{
+			String state= request.getParameter("state");
+			if(state.equals("s"))
+			{
+				out.print("<script>alert('意見傳送成功，謝謝您!')</script>");
+			}
+		}
+		catch(Exception e){}
+	%>
+    <div id="middle_feedback">
+        <!--訪客回饋-->
+        <br>
+        <div class="topic"><b>- Thank You -</b></div>
+        <!--左邊欄-->
+        <div id="feedback">
+           <div class="feedback_left">
+              
+                <div > &nbsp;</div>
+                <a href="about_us.jsp">
+                    <div class="about_lable"> 關於我們</div>
+                </a>
+                <a href="about_fundation.jsp">
+                    <div class="about_lable"> 成立宗旨</div>
+                </a>
+                <a href="about_product.jsp">
+                    <div class="about_lable"> 產品理念</div>
+                </a>
+                <a href="about_group.jsp">
+                    <div class="about_lable"> 成員介紹</div>
+                </a>
+                <a href="contact.jsp">
+                    <div class="about_lable_main"> 聯絡我們</div>
+                </a>
+            </div>
+			
+            <div class="feedback_right">
+                <div class="inner_feedback_2">
+                    <br>
+                    <div class="contact_ti">
+                        我們非常重視您寶貴的意見與問題，有您的回饋我們才有進步的空間，<br>
+                        請留下您的正確資料，我們收到留言將會以最快速的速度與您連絡。<br>
+                        再次感謝您。</div>
+                    <hr>
+                    <!--性別-->
+                    <form action="add.jsp" method="post">
+                        <strong>
+                            <div class="label">1 / 請選擇性別:</div>
+                        </strong><br>
+                        <div class="gender">
+                            <input id="boy" type="radio" name="gender" value="boy" checked>
+                            <label for="boy"></label>
+                            <span>男生</span>
+                        </div>
+                        <div class="gender">
+                            <input id="girl" type="radio" name="gender" value="girl">
+                            <label for="girl"></label>
+                            <span>女生</span>
+                        </div>
+                        <br>
+                    
+                    <!--信箱-->
+                    
+                        <strong>
+                            <div class="label">2 / 請輸入信箱:</div>
+                        </strong>
+
+                        <input type="text" placeholder="輸入您的信箱以便我們回覆您 ( ๑ > ω •́  )۶  " id="fname" name="fname">
+                        <br><br> <strong>
+                            <div class="label">3 / 請輸入電話:</div>
+                        </strong>
+                        <input type="text" placeholder="我們永遠感謝您 (⁎ ˃ ᴗ ˂ ⁎)" id="lname" name="lname"><br><br>
+                    
+					
+                    <!--意見類型-->
+                    <strong>
+                        <div class="label">4 / 主要意見:</div>
+                    </strong><br>
+                    <div class="select_common">
+                        <select name="suggest">
+                            <option value="商品品質">商品品質</option>
+                            <option value="售後服務">售後服務</option>
+                            <option value="出貨效率">出貨效率</option>
+                            <option value="其他">其他</option>
+                        </select>
+                    </div>
+                    <!--意見類型-->
+                    <br>
+                    <strong>
+                        <div class="label">5 / 意見內容</div>
+                   </strong><br>
+                    <textarea name="content" style="resize:none;width:80%;height:150px;" name="content"></textarea>
+                    <button class="contact_bt"  type="submit"><b>確認送出</b></button>
+					</form>
+                </div>
+                
+            </div>
+            <div style='clear:both;'></div>
+
+
+        </div>
+    </div>
+
+</body>
+
+
+</html>

@@ -1,0 +1,99 @@
+<!--↓↓↓↓↓此為jsp格式請勿更改↓↓↓↓↓-->
+<!--<%@page pageEncoding="utf-8"%>-->
+<!--↑↑↑↑↑此為jsp格式請勿更改↑↑↑↑↑-->
+<!--原先連結為index.html的檔案請改連結到index.jsp-->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>期末專案</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="index.css">
+    <link rel="stylesheet" type="text/css" href="contact.css">
+    <link rel="stylesheet" type="text/css" href="button.css">
+    <link rel="stylesheet" type="text/css" href="sales.css">
+    <link rel="stylesheet" type="text/css" href="login.css">
+    <link rel="stylesheet" type="text/css" href="about_us.css">
+</head>
+
+<body>
+    <div id="middle_feedback">
+        <br>
+
+        <!--訪客回饋-->
+        <div class="topic"><b>-About-</b></div>
+
+        <div id="feedback">
+            <div class="feedback_left">
+
+                <div> &nbsp;</div>
+                <a href="about_us.jsp">
+                    <div class="about_lable"> 關於我們</div>
+                </a>
+                <a href="about_fundation.jsp">
+                    <div class="about_lable_main"> 成立宗旨</div>
+                </a>
+                <a href="about_product.jsp">
+                    <div class="about_lable"> 產品理念</div>
+                </a>
+                <a href="about_group.jsp">
+                    <div class="about_lable"> 成員介紹</div>
+                </a>
+                <a href="contact.jsp">
+                    <div class="about_lable"> 聯絡我們</div>
+                </a>
+            </div>
+
+
+            <div class="feedback_right">
+                <div class="inner_about">
+
+                    <br>
+                    <div class="about_us_img"><img src="img/a02.png"></div>
+                    <p class="about_us_title_1">
+                        <p style="font-size: 20px;">布(bo)</p>
+                        <p class="about_us_detail">
+                            「布是一種歷史綿長久遠的紡織物」所有一針一線都源自於一個靈感出現的瞬間，而每一個圖案，都需要從生活當中不斷累積，直到適當的時機來臨，內在的生活經驗和外在的環境產生連結，源源不絕的創作能量就此展開。<br>
+
+                            <p style="font-size: 20px;">行(shing)</p>
+                            <p class="about_us_detail">
+                                「行是一種勉勵自己持續向前的態度」，出自於朱熹《活水亭觀書有感》中「向來枉費推移力，此日中流自在行。」，說明讀書為學，須靠持恆累積，才有通達悟道之樂，我們以此勉勵自己，做任何事都能堅持自己的理念，累積自己的實力，才能得到成功的快樂。</p>
+                                
+                            <p class="about_us_detail"><span id="dots">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;(觀看全文)</span><span id="more">
+                                    兩者意味於我們期許自己能夠承先啟後的讓設計文化發光且走的久遠。而世間萬物的生成，都有其背後的道理。我們創作取材於大自然，在用心創作的過程中都會因為用心而留下溫度與故事，只有透過用心品味，更能夠感受到物品深層的價值與溫度。<br><br>網路所帶來的資訊扁平化，讓購物變得透明且輕鬆，卻也容易讓人迷失在眾多商品中，這個世界從不缺乏好的物品，卻鮮少有清晰理念且堅持的選品店主。
+                                    這不只是一段買與賣的過程，而是生活的講究選擇，從店家選品的緣由開始，
+                                    一直到你使用之時與之後的每一個環節感受，都是缺一不可的經歷。
+                                    開始講究，注重生活中每一個微小的細節，物品就不再只是器物，更能訴說著與人交往的故事。
+                                    靈感品物重視與每一位接觸過的人一起品味好物帶來的靈感。</span>
+                                <button onclick="myFunction()" id="myBtn" class="button"><span> more</span></button></p>
+
+
+
+                </div>
+            </div>
+        </div>
+        <div style='clear:both;'></div>
+    </div>
+
+</body>
+
+
+</html>
+<script>
+    function myFunction() {
+        var dots = document.getElementById("dots");
+        var moreText = document.getElementById("more");
+        var btnText = document.getElementById("myBtn");
+
+        if (dots.style.display === "none") {
+            dots.style.display = "inline";
+            btnText.innerHTML = "more";
+            moreText.style.display = "none";
+        } else {
+            dots.style.display = "none";
+            btnText.innerHTML = "less";
+            moreText.style.display = "inline";
+        }
+    }
+
+</script>

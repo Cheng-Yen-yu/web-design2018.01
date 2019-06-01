@@ -1,0 +1,40 @@
+<script>
+    var num_jia = document.getElementById("num-jia");
+    var num_jian = document.getElementById("num-jian");
+    var input_num = document.getElementById("input-num");
+
+    num_jia.onclick = function() {
+
+        input_num.value = parseInt(input_num.value) + 1;
+    }
+
+    num_jian.onclick = function() {
+
+        if (input_num.value <= 1) {
+            input_num.value = 1;
+        } else {
+
+            input_num.value = parseInt(input_num.value) - 1;
+        }
+
+    }
+</script>
+<script>
+    $(function() {
+
+        $(".test").click(function()
+         { // 单击div元素
+            $("a").removeClass("active");
+            $(this).addClass("active"); // 使用children('li')获取div下的li元素，然后设置颜色为red即红色 
+        });
+
+    });
+</script>
+<script type="text/javascript">
+    function pro_img(big) {
+        var id = big;
+      
+        document.getElementById("image").src = id;
+    }
+
+</script>

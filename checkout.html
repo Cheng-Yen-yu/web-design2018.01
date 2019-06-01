@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="checkout.css">
+</head>
+
+<body>
+    <div id="middle">
+        <!--購物流程圖-->
+        <div id="step_box">
+            <div class="step_box_icon">
+                <img src="icon/one1.png" style="opacity: 0.3;">&emsp;&emsp;
+                <img src="icon/point.png" style="opacity: 0.3;">&emsp;&emsp;
+                <img src="icon/two2.png">&emsp;&emsp;
+                <img src="icon/point.png">&emsp;&emsp;
+                <img src="icon/three3.png" style="opacity: 0.3;">
+            </div>
+        </div>
+        <!--購物流程圖end-->
+        <div id="checklist_box">
+            <div class="checklist_box_index">
+                <div id="customer_form">
+                    <div class="box_title">
+                        顧客資料欄
+                    </div>
+                    <div class="box_content">
+                        顧客名稱</div>
+                    <div class="box_content">
+                        <input class="input_form" type="text" name="user_name" /></div>
+                    <div class="box_content">
+                        電子信箱
+                        <input class="input_form" type="text" name="user_email" /></div>
+                    <div class="box_content">
+                        電話號碼</div>
+                    <div class="box_content">
+                        <input class="input_form" type="text" name="user_telephone" /></div>
+                </div>
+
+                <div id="remarks">
+                    <div class="box_title">
+                        備註
+                    </div>
+                    <div class="box_content">
+                        <textarea name="" id="" cols="60" rows="10" placeholder="有甚麼想要告訴我們的嗎？"></textarea>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="checklist_box_index">
+                <div id="delivery_form">
+                    <div class="box_title">送貨資料欄</div>
+                    <div class="box_content">送貨方式</div>
+                    <div class="box_content"><select name="delivery_howto" class="input_form">
+                            <option value="宅配">宅配</option>
+                        </select>
+                    </div>
+                    <div class="box_content">收穫人姓名</div>
+                    <div class="box_content">
+                        <input class="input_form" type="text" name="receiver_name" /></div>
+                    <div class="box_content">
+                        收貨人地址
+                        <input class="input_form" type="text" name="receiver_address" /></div>
+                    <div class="box_content">
+                        電話號碼</div>
+                    <div class="box_content">
+                        <input class="input_form" type="text" name="user_telephone" /></div>
+                </div>
+                <div id="payment_form">
+                    <div class="box_title">付款資料欄</div>
+                    <div class="box_content">付款方式</div>
+                    <div class="box_content"><select name="delivery_howto" class="input_form">
+                            <option value="貨到付款">貨到付款</option>
+                            <option value="轉帳">轉帳</option>
+                        </select>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+        <div id="checkout_button_click">
+            <div id="goback">
+                <a href="shop_list.html">&#60;&#60;返回購物車</a>
+            </div>
+            <div id="submit">
+                <a href="done.html"><button type="submit" value="Submit" class="submit">提交</button></a>
+            </div>
+        </div>
+
+
+
+    </div>
+</body>
+
+</html>

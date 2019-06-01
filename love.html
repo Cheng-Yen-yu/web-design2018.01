@@ -1,0 +1,127 @@
+<!--↓↓↓↓↓此為jsp格式請勿更改↓↓↓↓↓-->
+<!--<%@page pageEncoding="utf-8"%>-->
+<!--↑↑↑↑↑此為jsp格式請勿更改↑↑↑↑↑-->
+<!--原先連結為index.html的檔案請改連結到index.jsp-->
+<!DOCTYPE html>
+<!--基本元素複製標頭-->
+<html>
+
+<head>
+    <meta charset="utf-8">
+
+    <title>期末專案</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" type="text/css" href="shopcart.css">
+    <link rel="stylesheet" type="text/css" href="product.css">
+    <link rel="stylesheet" type="text/css" href="littleshake.css">
+</head>
+
+<body>
+    <!--我的最愛-->
+    <div id="middle_shop_cart">
+        <br>
+        <div class="topic"><b>- 最愛清單 -</b></div>
+        <div style="margin:2%;">
+            <div class=index_shopcart>
+<!--jsp開始-->			
+<%
+			ResultSet rs= con.createStatement().executeQuery("select * from love where m_account='"+session.getAttribute("in")+"'");
+			ResultSet g_name;
+			
+			String del="";
+			
+			try{
+					del=(String)request.getParameter("del");
+					if(!del.equals("")||del==null){
+					con.createStatement().executeUpdate("delete from love where m_account='"+session.getAttribute("in")+"' and p_id='"+del+"'");
+					response.sendRedirect("love.jsp");
+					}
+			}
+			catch(Exception e){}
+
+
+
+
+			
+			while(rs.next()){
+					//out.print("select * from goods where p_id='"+rs.getString("p_id")+"'<br>");
+				   g_name=con.createStatement().executeQuery("select * from goods where p_id='"+rs.getString("p_id")+"'");//bug
+				   g_name.next();
+				   out.print("<div class='inner_shopcart shake-slow shake-constant shake-constant--hover'>");
+				   out.print("<a href='love.jsp?del="+rs.getString("p_id")+"'>");
+				   out.print("<img src='icon/x-button.png' class='love_delete'></a>");
+				   out.print("<a href='#'><img class=' product_1' src='"+g_name.getString("p_image")+"' /></a>");
+				   out.print("<div class='shopcart_text'>"+g_name.getString("p_name")+"</div>");
+				   out.print("<div class='shopcart_price'>原價<S>NT$"+g_name.getString("p_originprice")+"</S><b>活動價 NT$"+g_name.getString("p_price")+" </b></div>");
+				   out.print(" <a href='sales.jsp?p_id="+rs.getString("p_id")+"&act=buy&YourLocation=S&amount=1&outlink=1'><button class='join_cart2_bt'>加入購物車</button></a>");//大小怎麼選?
+				   out.print("</div>");
+			}
+              
+%>
+<!--jsp結束-->	
+
+<!--                 <div class="inner_shopcart shake-slow shake-constant shake-constant--hover">
+                    <a href="sales.jsp">
+                         <img class="love_delete" src="icon/x-button.png">
+                        <img class="product_1" src="img/shirt-1.png" /></a>
+                    <div class="shopcart_text">迪士尼系列毛圈圓領衫 </div>
+                    <div class="shopcart_price">原價<S>NT$ 490</S><b>活動價 NT$370 </b></div>
+                    <button class="join_cart2_bt">加入購物車</button>
+
+                </div>
+
+               <div class="inner_shopcart shake-slow shake-constant shake-constant--hover">
+                    <a href="sales.jsp">
+                         <img class="love_delete" src="icon/x-button.png">
+                        <img class="product_1" src="img/shirt-1.png" /></a>
+                    <div class="shopcart_text">迪士尼系列毛圈圓領衫 </div>
+                    <div class="shopcart_price">原價<S>NT$ 490</S><b>活動價 NT$370 </b></div>
+                    <button class="join_cart2_bt">加入購物車</button>
+
+                </div>
+                <div class="inner_shopcart shake-slow shake-constant shake-constant--hover">
+                    <a href="sales.jsp">
+                        <img class="love_delete" src="icon/x-button.png">
+                        <img class="product_1" src="img/shirt-1.png" /></a>
+                    <div class="shopcart_text">迪士尼系列毛圈圓領衫 </div>
+                    <div class="shopcart_price">原價<S>NT$ 490</S><b>活動價 NT$370 </b></div>
+                    <button class="join_cart2_bt">加入購物車</button>
+
+                </div>
+                <div class="inner_shopcart shake-slow shake-constant shake-constant--hover">
+                    <a href="sales.jsp">
+                        <img class="love_delete" src="icon/x-button.png">
+                        <img class="product_1" src="img/shirt-1.png" /></a>
+                    <div class="shopcart_text">迪士尼系列毛圈圓領衫 </div>
+                    <div class="shopcart_price">原價<S>NT$ 490</S><b>活動價 NT$370 </b></div>
+                    <button class="join_cart2_bt">加入購物車</button>
+
+                </div>
+                <div class="inner_shopcart shake-slow shake-constant shake-constant--hover">
+                    <a href="sales.jsp">
+                         <img class="love_delete" src="icon/x-button.png">
+                        <img class="product_1" src="img/shirt-1.png" /></a>
+                    <div class="shopcart_text">迪士尼系列毛圈圓領衫 </div>
+                    <div class="shopcart_price">原價<S>NT$ 490</S><b>活動價 NT$370 </b></div>
+                    <button class="join_cart2_bt">加入購物車</button>
+
+                </div>
+                <div class="inner_shopcart shake-slow shake-constant shake-constant--hover">
+                    <a href="sales.jsp">
+                         <img class="love_delete" src="icon/x-button.png">
+                        <img class="product_1" src="img/shirt-1.png" /></a>
+                    <div class="shopcart_text">迪士尼系列毛圈圓領衫 </div>
+                    <div class="shopcart_price">原價<S>NT$ 490</S><b>活動價 NT$370 </b></div>
+                    <button class="join_cart2_bt">加入購物車</button>
+
+                </div>
+-->
+                <div style='clear:both;'></div>
+
+
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
